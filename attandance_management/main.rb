@@ -1,31 +1,32 @@
+require_relative 'student'
 require_relative 'attandance'
-# require_relative 'student'
 
-attandance = Attandance.new('attandance.txt')
-def start
-    loop do
-        puts "1. Add students"
-        puts "2. Mark attendance"
-        puts "3. List attendance"
-        puts "4. Exit"
-        print "Choose an option: "
+attendance = Attendance.new('attandance.txt')
 
-        choice = gets.chomp.to_i
+loop do
+  puts "1. Add student"
+  puts "2. Mark attendance"
+  puts "3. List attendance"
+  puts "4. Exit"
+  print "Choose an option: "
+  option = gets.chomp.to_i
 
-        case choice
-        when 1
-            print "Enter a student name: "
-            name = gets.chomp
-            add_students(name)
-        when 2
-            print "Enter student name: "
-        when 3
-        when 4
-            print "Existing the attandance management system!"
-            break
-        else
-            puts "Invalid choice. Please try again!"
-        end
-    end
+  case option
+  when 1
+    print "Enter student name: "
+    name = gets.chomp
+    attendance.add_student(name)
+  when 2
+    print "Enter student name: "
+    name = gets.chomp
+    print "Enter date (YYYY-MM-DD): "
+    date = gets.chomp
+    attendance.mark_attendance(name, date)
+  when 3
+    attendance.list_attendance
+  when 4
+    break
+  else
+    puts "Invalid option. Please try again."
+  end
 end
-
